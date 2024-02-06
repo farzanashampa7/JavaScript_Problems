@@ -159,3 +159,88 @@ const findDriverWithShortestTrip = (arr) => {
 };
 
 findDriverWithShortestTrip(listOfDrivers);
+
+// 5. Write a function to sort the list of drivers from longest to shortest trip.
+
+const sortListOfDriversFromLongestToShortest = (arr) => {
+  let driversList = arr.map((driver) => driver.duration);
+  let sortedDurationList = driversList.sort((a, b) => b - a);
+  console.log(sortedDurationList);
+};
+
+console.log(sortListOfDriversFromLongestToShortest(listOfDrivers));
+
+sortListOfDriversFromLongestToShortest(listOfDrivers);
+
+// 6. A wife called to look for husband and claiming the driver works here. Please write a function
+//       to find the driver when a first name is given as parameters.
+
+const findDriverWithFirstName = (arr, firstName) => {
+  const driver = arr.filter(
+    (driver) => driver.first_name.toLowerCase() === firstName.toLowerCase()
+  );
+  console.log(driver);
+};
+
+findDriverWithFirstName(listOfDrivers, 'thor');
+
+// 7. More trouble coming in, police is now looking for a convict. They can provide any form of a full name format such as
+//       "John Hansom" or "Hansom, John". Write a function to peform a search on the list of drivers
+//       and return the driver if found matching. Return null if no one found.
+
+const searchDriverWithFullName = (arr, name) => {
+  const driverName = arr.filter((driver) => {
+    const fullName = driver.first_name + ' ' + driver.last_name;
+    const fullName1 = driver.last_name + ', ' + driver.first_name;
+
+    if (name === fullName) {
+      return driver;
+    } else if (name === fullName1) {
+      return driver;
+    } else {
+      return null;
+    }
+  });
+  console.log(driverName);
+};
+
+searchDriverWithFullName(listOfDrivers, 'Tony Stak');
+
+// 8. How many drivers are making trips with cargo types of 'car'?
+
+const countDriversTripWithCar = (arr) => {
+  let count = 0;
+  arr.map((driver) => {
+    if (driver.cargo_types.indexOf('car') !== -1) {
+      count++;
+    }
+  });
+  return count;
+};
+
+console.log(countDriversTripWithCar(listOfDrivers));
+
+// 9. We need a count on how many drivers are driving in domestic and internation? Output will be something like this:
+//   {
+//     international: 4,
+//     domestic: 6
+//   }
+//   */
+
+const countDriverRoutes = (arr) => {
+  const Obj = {
+    international: 0,
+    domestic: 0,
+  };
+
+  arr.map((driver) => {
+    if (driver.isInternation) {
+      Obj.international++;
+    } else {
+      Obj.domestic++;
+    }
+  });
+  return Obj;
+};
+
+console.log(countDriverRoutes(listOfDrivers));
