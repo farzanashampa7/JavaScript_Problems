@@ -112,47 +112,53 @@ const listOfDrivers = [
 
 // 1. Write a function to print all the drivers information.
 
-const printAllDriversInformation = (arr) => {
-  arr.map((item) => {
-    console.log(item);
+const printAllDriversInformation = (drivers) => {
+  drivers.map((driver) => {
+    console.log(driver);
   });
 };
 printAllDriversInformation(listOfDrivers);
 
 // 2. Given a driver id, write a function to return the matched driver.
 
-const printDriverWithId = (arr, id) => {
-  const driver = arr.filter((item) => item.id === id);
-  console.log(driver);
+const printDriverWithId = (drivers, id) => {
+  const driverWithGivenId = drivers.find((driver) => driver.id === id);
+  console.log(driverWithGivenId);
 };
 printDriverWithId(listOfDrivers, 1010);
 
 // 3. Write a function to find the driver with the longest trip.
 
-const findDriverWithLongestTrip = (arr) => {
-  let maxDuration = arr[0].duration;
-  for (let i = 0; i < arr.length; i++) {
-    if (maxDuration < arr[i].duration) {
-      maxDuration = arr[i].duration;
+const findDriverWithLongestTrip = (drivers) => {
+  let maxDuration = drivers[0].duration;
+  for (let i = 1; i < drivers.length; i++) {
+    if (maxDuration < drivers[i].duration) {
+      maxDuration = drivers[i].duration;
     }
   }
-  let driver = arr.filter((driver) => driver.duration === maxDuration);
-  console.log(`${driver[0].first_name} ${driver[0].last_name}`);
+  let driverWithLongestTrip = drivers.find(
+    (driver) => driver.duration === maxDuration
+  );
+  console.log(
+    `${driverWithLongestTrip.first_name} ${driverWithLongestTrip.last_name}`
+  );
 };
 
 findDriverWithLongestTrip(listOfDrivers);
 
 // 4. Write a function to find the driver with the shortest trip.
 
-const findDriverWithShortestTrip = (arr) => {
-  let minDuration = arr[0].duration;
-  for (let i = 0; i < arr.length; i++) {
-    if (minDuration > arr[i].duration) {
-      minDuration = arr[i].duration;
+const findDriverWithShortestTrip = (drivers) => {
+  let minDuration = drivers[0].duration;
+  for (let i = 1; i < drivers.length; i++) {
+    if (drivers[i].duration < minDuration) {
+      minDuration = drivers[i].duration;
     }
   }
-  let drivers = arr.filter((driver) => driver.duration === minDuration);
-  let driverList = drivers.map(
+  let driversWithShortestTrip = drivers.filter(
+    (driver) => driver.duration === minDuration
+  );
+  let driverList = driversWithShortestTrip.map(
     (driver) => `${driver.first_name} ${driver.last_name}`
   );
   console.log(driverList);
@@ -162,21 +168,16 @@ findDriverWithShortestTrip(listOfDrivers);
 
 // 5. Write a function to sort the list of drivers from longest to shortest trip.
 
-const sortListOfDriversFromLongestToShortest = (arr) => {
-  let driversList = arr.map((driver) => driver.duration);
-  let sortedDurationList = driversList.sort((a, b) => b - a);
-  console.log(sortedDurationList);
-};
+const sortDriversFromLargestToSmallestTrip = (drivers) =>
+  drivers.sort((a, b) => b.duration - a.duration);
 
-console.log(sortListOfDriversFromLongestToShortest(listOfDrivers));
-
-sortListOfDriversFromLongestToShortest(listOfDrivers);
+console.log(sortDriversFromLargestToSmallestTrip(listOfDrivers));
 
 // 6. A wife called to look for husband and claiming the driver works here. Please write a function
 //       to find the driver when a first name is given as parameters.
 
-const findDriverWithFirstName = (arr, firstName) => {
-  const driver = arr.filter(
+const findDriverWithFirstName = (drivers, firstName) => {
+  const driver = drivers.filter(
     (driver) => driver.first_name.toLowerCase() === firstName.toLowerCase()
   );
   console.log(driver);
@@ -188,8 +189,8 @@ findDriverWithFirstName(listOfDrivers, 'thor');
 //       "John Hansom" or "Hansom, John". Write a function to peform a search on the list of drivers
 //       and return the driver if found matching. Return null if no one found.
 
-const searchDriverWithFullName = (arr, name) => {
-  const driverName = arr.filter((driver) => {
+const searchDriverWithFullName = (drivers, name) => {
+  const driverName = drivers.find((driver) => {
     const fullName = driver.first_name + ' ' + driver.last_name;
     const fullName1 = driver.last_name + ', ' + driver.first_name;
 
@@ -204,13 +205,13 @@ const searchDriverWithFullName = (arr, name) => {
   console.log(driverName);
 };
 
-searchDriverWithFullName(listOfDrivers, 'Tony Stak');
+searchDriverWithFullName(listOfDrivers, 'Tony Stark');
 
 // 8. How many drivers are making trips with cargo types of 'car'?
 
-const countDriversTripWithCar = (arr) => {
+const countDriversTripWithCar = (drivers) => {
   let count = 0;
-  arr.map((driver) => {
+  drivers.map((driver) => {
     if (driver.cargo_types.indexOf('car') !== -1) {
       count++;
     }
@@ -227,20 +228,20 @@ console.log(countDriversTripWithCar(listOfDrivers));
 //   }
 //   */
 
-const countDriverRoutes = (arr) => {
-  const Obj = {
+const countDriverRoutes = (drivers) => {
+  const tripTypes = {
     international: 0,
     domestic: 0,
   };
 
-  arr.map((driver) => {
+  drivers.map((driver) => {
     if (driver.isInternation) {
-      Obj.international++;
+      tripTypes.international++;
     } else {
-      Obj.domestic++;
+      tripTypes.domestic++;
     }
   });
-  return Obj;
+  return tripTypes;
 };
 
 console.log(countDriverRoutes(listOfDrivers));
