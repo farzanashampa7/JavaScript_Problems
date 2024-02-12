@@ -11,19 +11,19 @@
     Input: nums = [1,2,3]
     Output: 0 */
 
-// const findNumberOfGoodPairs = (nums) => {
-//   let count = 0;
-//   for (let i = 0; i < nums.length; i++) {
-//     for (let j = i + 1; j < nums.length; j++) {
-//       if (nums[i] === nums[j]) {
-//         count++;
-//       }
-//     }
-//   }
-//   return count;
-// };
+const findNumberOfGoodPairs = (nums) => {
+  let count = 0;
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] === nums[j]) {
+        count++;
+      }
+    }
+  }
+  return count;
+};
 
-// console.log(findNumberOfGoodPairs([1, 2, 3]));
+console.log(findNumberOfGoodPairs([1, 2, 3]));
 
 // 2. Given a number, write a function to calculate the sum of the digits.
 //     arr = 123
@@ -31,6 +31,7 @@
 
 const calculateSumOfDigits = (num) => {
   const digits = Array.from(num.toString(), (item) => parseInt(item));
+
   let sum = 0;
   for (let i = 0; i < digits.length; i++) {
     sum = sum + digits[i];
@@ -52,19 +53,19 @@ console.log(calculateSumOfDigits(4089));
 // nums = [1]
 // Output: 1
 
-// const findSingleDigitsInArray = (nums) => {
-//   let sortedNums = nums.sort();
-//   for (let i = 0; i < sortedNums.length; i++) {
-//     if (
-//       sortedNums[i] !== sortedNums[i + 1] &&
-//       sortedNums[i - 1] !== sortedNums[i]
-//     ) {
-//       return sortedNums[i];
-//     }
-//   }
-// };
+const findSingleDigitsInArray = (nums) => {
+  let sortedNums = nums.sort();
+  for (let i = 0; i < sortedNums.length; i++) {
+    if (
+      sortedNums[i] !== sortedNums[i + 1] &&
+      sortedNums[i - 1] !== sortedNums[i]
+    ) {
+      return sortedNums[i];
+    }
+  }
+};
 
-// console.log(findSingleDigitsInArray([2, 2, 1]));
+console.log(findSingleDigitsInArray([2, 2, 1]));
 
 // 4. Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must be unique and you may return the result in any order.
 
@@ -76,29 +77,29 @@ console.log(calculateSumOfDigits(4089));
 //     Explanation: [4,9] is also accepted.
 //  */
 
-// const findIntersectionOfTwoArrays = (nums1, nums2) => {
-//   let intersectedNums = [];
+const findIntersectionOfTwoArrays = (nums1, nums2) => {
+  let intersectedNums = [];
 
-//   for (let i = 0; i < nums1.length; i++) {
-//     if (nums2.includes(nums1[i])) {
-//       //     if (intersectedNums.indexOf(nums1[i] === -1)) {
-//       //   intersectedNums.push(nums1[i]);
-//       //     }
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2.includes(nums1[i])) {
+      //     if (intersectedNums.indexOf(nums1[i] === -1)) {
+      //   intersectedNums.push(nums1[i]);
+      //     }
 
-//       intersectedNums.push(nums1[i]);
-//     }
-//   }
-//   const uniqueIntersectedNums = intersectedNums.reduce(
-//     (accumulator, currentValue) => {
-//       if (accumulator.indexOf(currentValue) === -1) {
-//         accumulator.push(currentValue);
-//       }
-//       return accumulator;
-//     },
-//     []
-//   );
+      intersectedNums.push(nums1[i]);
+    }
+  }
+  const uniqueIntersectedNums = intersectedNums.reduce(
+    (accumulator, currentValue) => {
+      if (accumulator.indexOf(currentValue) === -1) {
+        accumulator.push(currentValue);
+      }
+      return accumulator;
+    },
+    []
+  );
 
-//   return uniqueIntersectedNums;
-// };
+  return uniqueIntersectedNums;
+};
 
-// console.log(findIntersectionOfTwoArrays([1, 2, 2, 1], [2, 2]));
+console.log(findIntersectionOfTwoArrays([1, 2, 2, 1], [2, 2]));
